@@ -10,3 +10,15 @@ Accentize Hungarian text.
 
     $ echo arvizturo tukorfurogep | ./accentizer
     árvíztűrő tükörfúrógép
+
+## Deaccentize input
+
+    $ $ echo árvíztűrő tükörfúrógép | ./deaccentize.py
+    arvizturo tukorfurogep
+
+
+Accentizing again:
+
+    $ echo árvíztűrő tükörfúrógép | ./deaccentize.py | ./accentizer 
+    árvíztűrő tükörfúrógép
+
