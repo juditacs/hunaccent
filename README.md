@@ -13,7 +13,7 @@ Accentize Hungarian text.
 
 ## Deaccentize input
 
-    $ $ echo árvíztűrő tükörfúrógép | ./deaccentize.py
+    $ echo árvíztűrő tükörfúrógép | ./deaccentize.py
     arvizturo tukorfurogep
 
 
