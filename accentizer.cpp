@@ -24,7 +24,7 @@ public:
     // all questions are in the form of "Is the nth charcter in
     // the sliding window c?"
     // if so, go right, else go left
-    int get_next_decision(const std::deque<char>& slide_window) {
+    int get_next_decision(const std::deque<char>& slide_window) const {
         return (slide_window[window+position] == c) ? right : left;
     }
 };
@@ -67,7 +67,7 @@ public:
     // traverse tree until a leaf node is reached
     // stop at 200 to avoid loops (error in the tree)
     // if no decision was made, keep the character as it is
-    int classify(const std::deque<char>& slide_window) {
+    int classify(const std::deque<char>& slide_window) const {
         int index = 0, limit = 200;
         while (index < (int)tree.size()) {
             index = tree[index].get_next_decision(slide_window);
