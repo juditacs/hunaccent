@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <deque>
 
 
 class Node {
@@ -23,10 +24,8 @@ public:
     // all questions are in the form of "Is the nth charcter in
     // the sliding window c?"
     // if so, go right, else go left
-    // Since the sliding_window is shifted, the current middle position is also needed
-    int get_next_decision(char slide_window[], int midpos) {
-        int fullw = 2*window + 1;
-        return (slide_window[(midpos+position+fullw)%fullw] == c) ? right: left;
+    int get_next_decision(const std::deque<char>& slide_window) {
+        return (slide_window[window+position] == c) ? right : left;
     }
 };
 
@@ -68,10 +67,10 @@ public:
     // traverse tree until a leaf node is reached
     // stop at 200 to avoid loops (error in the tree)
     // if no decision was made, keep the character as it is
-    int classify(char slide_window[], int pos) {
+    int classify(const std::deque<char>& slide_window) {
         int index = 0, limit = 200;
         while (index < (int)tree.size()) {
-            index = tree[index].get_next_decision(slide_window, pos);
+            index = tree[index].get_next_decision(slide_window);
             if (tree[index].get_leaf())
                 // leaf node is reached, no further decisions necessary
                 return tree[index].get_label();
@@ -119,18 +118,16 @@ public:
         std::string input = ss.str();
 
         int fullw = window*2+1;
-        int vpos = 0;
-        char *slide_window = new char[fullw];
+        std::deque<char> slide_window;
 
         for (int i=0;i<fullw;i++) {
-            slide_window[i] = normalize(input[i]);
+            slide_window.push_back(normalize(input[i]));
         }
         int input_pos = window;
         for(auto curit=input.begin()+fullw; curit != input.end(); curit++) {
-            int midpos = (vpos + fullw + window) % fullw;
-            char midc = slide_window[midpos];
+            char midc = slide_window[window];
             if (accent_map.count(midc)) {
-                int label = trees[midc].classify(slide_window, midpos);
+                int label = trees[midc].classify(slide_window);
                 if (isupper(input[input_pos]))
                     std::cout << accent_map_upper[midc][label];
                 else
@@ -140,11 +137,10 @@ public:
             input_pos++;
 
             char norm = normalize(*curit);
-            slide_window[vpos++] = norm;
-            if (vpos >= fullw) vpos = 0;
+            slide_window.push_back(norm);
+            slide_window.pop_front();
         }
         std::cout << std::endl;
-        delete[] slide_window;
 
     }
     // map characters to a small set of characters
