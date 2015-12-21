@@ -110,11 +110,14 @@ public:
     }
     void accentize() {
         std::stringstream ss;
-        for (int i=0;i<window;i++) ss << ' ';
+        char padding = '_';
+        for (int i=0;i<window-1;i++) ss << padding;
+        ss << ' ';
         for (std::string line; std::getline(std::cin, line);) {
             ss << line << '\n';
         }
-        for (int i=0;i<window;i++) ss << ' ';
+        ss << ' ';
+        for (int i=0;i<window-1;i++) ss << padding;
         std::string input = ss.str();
 
         int fullw = window*2+1;
