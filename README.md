@@ -11,6 +11,11 @@ Accentize Hungarian text.
     $ echo arvizturo tukorfurogep | ./accentizer
     árvíztűrő tükörfúrógép
 
+If you call the binary from a different directory, you need to specify the location of the trees:
+
+    $ echo arvizturo tukorfurogep | ./accentizer/accentizer accentizer/tree/
+    árvíztűrő tükörfúrógép
+
 ## Deaccentize input
 
     $ echo árvíztűrő tükörfúrógép | ./deaccentize.py
