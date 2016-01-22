@@ -27,3 +27,10 @@ Accentizing again:
     $ echo árvíztűrő tükörfúrógép | ./deaccentize.py | ./accentizer 
     árvíztűrő tükörfúrógép
 
+## Note
+
+Accentizer is still under heavy development, meaning I might change the tree files for better ones anytime.
+
+## Other languages
+
+Other European languages will be added shortly.
