@@ -1,4 +1,4 @@
-# Accentizer
+# Hunaccent
 
 Accentize Hungarian text.
 
