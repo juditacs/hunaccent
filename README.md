@@ -29,8 +29,19 @@ Accentizing again:
 
 ## Note
 
-Hunaccent is still under heavy development, meaning I might change the tree files for better ones anytime.
+Hunaccent is still under development, meaning I might change the tree files for better ones anytime.
 
-## Other languages
+## Citation
 
-Other European languages will be added shortly.
+Please cite this paper if you use hunaccent in your research:
+
+~~~
+@article{Acs:2016,
+  title={Hunaccent: Small Footprint Diacritic Restoration for Social Media},
+  author={Acs, Judit and Halmi, J{\'o}zsef},
+  booktitle={Normalisation and Analysis of Social Media Texts (NormSoMe) Workshop},
+  year=2016,
+}
+~~~
+
+
