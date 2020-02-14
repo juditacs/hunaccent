@@ -1,0 +1,30 @@
+<!doctype html >
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+  <h1>Ékezetesítő</h1>
+  <textarea rows="40" cols="50" autofocus style="font-size: 10pt" id="inp" onkeyup="acc()"></textarea>
+  <textarea rows="40" cols="50" style="font-size: 10pt" readonly id="outp"></textarea>
+
+  <script>
+    var accentizer;
+    var Module = {
+      onRuntimeInitialized: function() {
+        accentizer = new Module.Accentizer();
+        accentizer.load("tree");
+      }
+    };
+
+    function acc() {
+      var outp = accentizer.accentize(document.getElementById("inp").value + " ");
+      document.getElementById("outp").value = outp;
+    }
+
+document.getElementById("inp").bind('mouseup', function() {
+    console.log('resized');
+});
+
+  </script>
+  <script src="hunaccent.js"></script>
+</body>
+</html>
