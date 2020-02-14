@@ -108,11 +108,13 @@ public:
             trees[c].read_from_file(fname);
         }
     }
-    void accentize(std::string inp) {
+    std::string accentize(std::string inp) {
         std::string input = std::string(window-1, '_') + " " + inp + " " + std::string(window-1, '_');
 
         int fullw = window*2+1;
         std::deque<char> slide_window;
+        std::stringstream output;
+
 
         for (int i=0;i<fullw;i++) {
             slide_window.push_back(normalize(input[i]));
@@ -123,20 +125,21 @@ public:
             if (accent_map.count(midc)) {
                 int label = trees[midc].classify(slide_window);
                 if (isupper(input[input_pos]))
-                    std::cout << accent_map_upper[midc][label];
+                    output << accent_map_upper[midc][label];
                 else
-                    std::cout << accent_map[midc][label];
+                    output << accent_map[midc][label];
             }
-            else std::cout << input[input_pos];
+            else output << input[input_pos];
             input_pos++;
 
             char norm = normalize(*curit);
             slide_window.push_back(norm);
             slide_window.pop_front();
         }
-        std::cout << std::endl;
-
+        output << std::endl;
+        return output.str();
     }
+
     // map characters to a small set of characters
     static char normalize(char c) {
         if (isspace(c)) return ' ';
@@ -157,5 +160,5 @@ int main(int argc, char* argv[]) {
         ss << line << '\n';
     }
 
-    ac.accentize(ss.str());
+    std::cout << ac.accentize(ss.str());
 }
