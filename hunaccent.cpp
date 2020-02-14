@@ -108,17 +108,8 @@ public:
             trees[c].read_from_file(fname);
         }
     }
-    void accentize() {
-        std::stringstream ss;
-        char padding = '_';
-        for (int i=0;i<window-1;i++) ss << padding;
-        ss << ' ';
-        for (std::string line; std::getline(std::cin, line);) {
-            ss << line << '\n';
-        }
-        ss << ' ';
-        for (int i=0;i<window-1;i++) ss << padding;
-        std::string input = ss.str();
+    void accentize(std::string inp) {
+        std::string input = std::string(window-1, '_') + " " + inp + " " + std::string(window-1, '_');
 
         int fullw = window*2+1;
         std::deque<char> slide_window;
@@ -160,5 +151,11 @@ int main(int argc, char* argv[]) {
     Accentizer ac;
     if (argc > 1) ac.load(argv[1]);
     else ac.load("tree");
-    ac.accentize();
+
+    std::stringstream ss;
+    for (std::string line; std::getline(std::cin, line);) {
+        ss << line << '\n';
+    }
+
+    ac.accentize(ss.str());
 }
