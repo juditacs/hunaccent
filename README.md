@@ -6,6 +6,19 @@ Accentize Hungarian text.
 
     g++ hunaccent.cpp -std=c++11 -O3 -Wall -pedantic -o hunaccent
 
+## Compiling to Javascript
+
+Install Emscripten. Set
+
+    #define TARGET_EMSCRIPTEN
+
+at the beginning of `hunaccent.cpp` by removing the double slash, then run
+
+    emcc -std=c++11 --bind -s WASM=0 hunaccent.cpp -o hunaccent.js --embed-file tree
+
+The `hunaccent.js` and `hunaccent.html` files are all that is needed, the asset is compiled into the
+js file by Emscripten.
+
 ## Usage
 
     $ echo arvizturo tukorfurogep | ./hunaccent

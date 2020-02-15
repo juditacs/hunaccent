@@ -1,3 +1,7 @@
+
+// Set this to compile to javascript, see README.md
+// #define TARGET_EMSCRIPTEN
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -150,6 +154,21 @@ public:
     }
 };
 
+
+#ifdef TARGET_EMSCRIPTEN
+
+#include <emscripten/bind.h>
+
+EMSCRIPTEN_BINDINGS(accentizer) {
+    emscripten::class_<Accentizer>("Accentizer")
+        .constructor<>()
+        .function("accentize", &Accentizer::accentize)
+        .function("load", &Accentizer::load)
+        ;
+}
+
+#else
+
 int main(int argc, char* argv[]) {
     Accentizer ac;
     if (argc > 1) ac.load(argv[1]);
@@ -162,3 +181,5 @@ int main(int argc, char* argv[]) {
 
     std::cout << ac.accentize(ss.str());
 }
+
+#endif
