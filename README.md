@@ -1,6 +1,6 @@
 # Hunaccent
 
-Accentize Hungarian text.
+Accentize Hungarian text. Please note that this libarary **does not** use a vocabulary and it may generate non-existant words.
 
 ## Compiling
 
